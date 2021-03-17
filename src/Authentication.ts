@@ -27,7 +27,7 @@ class Authentication {
             // @ts-ignore
             const result = await axios(config);
 
-            if (result.data.statusCode !== 203) {
+            if (result.status !== 203) {
                 throw new Error();
             }
         } catch (e) {
