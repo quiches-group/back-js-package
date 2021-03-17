@@ -1,4 +1,12 @@
 import axios from 'axios';
+import atob from 'atob';
+
+interface Payload {
+    _id: string;
+    appid: string;
+    iat: string;
+    exp: string;
+}
 
 class Authentication {
     private readonly hostname = 'https://sso.quiches.ovh/api/application-users';
@@ -33,6 +41,14 @@ class Authentication {
         } catch (e) {
             throw new Error();
         }
+    }
+
+    getPayload = (token: string): Payload => {
+        const splitedToken = token.split('.');
+        const encodedPayload = splitedToken[1];
+        const jsonPayload = atob(encodedPayload);
+
+        return JSON.parse(jsonPayload);
     }
 }
 
