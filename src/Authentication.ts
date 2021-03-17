@@ -1,7 +1,7 @@
 import axios from 'axios';
 import atob from 'atob';
 
-interface Payload {
+export type PayloadType = {
     _id: string;
     appid: string;
     iat: string;
@@ -43,7 +43,7 @@ class Authentication {
         }
     }
 
-    getPayload = (token: string): Payload => {
+    getPayload = (token: string): PayloadType => {
         const splitedToken = token.split('.');
         const encodedPayload = splitedToken[1];
         const jsonPayload = atob(encodedPayload);
