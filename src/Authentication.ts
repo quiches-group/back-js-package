@@ -43,7 +43,7 @@ class Authentication {
         }
     }
 
-    getPayload = (token: string): PayloadType => {
+    static getPayload = (token: string): PayloadType => {
         const splitedToken = token.split('.');
         const encodedPayload = splitedToken[1];
         const jsonPayload = atob(encodedPayload);
