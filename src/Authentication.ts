@@ -8,9 +8,9 @@ export type PayloadType = {
     exp: string;
 }
 
-class Authentication {
-    private readonly hostname = 'https://sso.quiches.ovh/api/application-users';
+const hostname = 'https://sso.quiches.ovh/api/application-users';
 
+class Authentication {
     private readonly privateKey: string;
 
     constructor(privateKey: string) {
@@ -18,17 +18,17 @@ class Authentication {
     }
 
     private injectPrivateKey(url: string): string {
-        return `${url}?privateKey=${this.privateKey}`;
+        return `${hostname}${url}?privateKey=${this.privateKey}`;
     }
 
-    verifyToken = async (token: string): Promise<void> => {
+    static verifyToken = async (token: string): Promise<void> => {
         const config = {
             headers: {
                 'Content-Type': 'application/json',
             },
             data: { token },
             method: 'POST',
-            url: this.injectPrivateKey(`${this.hostname}/verify-token`),
+            url: `${hostname}/application-users/verify-token`,
         };
 
         try {
