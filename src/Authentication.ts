@@ -8,7 +8,7 @@ export type PayloadType = {
     exp: string;
 }
 
-const hostname = 'https://sso.quiches.ovh/api/application-users';
+const hostname = 'https://sso.quiches.ovh';
 
 class Authentication {
     private readonly privateKey: string;
