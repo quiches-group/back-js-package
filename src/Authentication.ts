@@ -21,6 +21,8 @@ class Authentication {
         return `${hostname}${url}?privateKey=${this.privateKey}`;
     }
 
+    verifyToken = Authentication.verifyToken;
+
     static verifyToken = async (token: string): Promise<void> => {
         const config = {
             headers: {
@@ -42,6 +44,8 @@ class Authentication {
             throw new Error();
         }
     }
+
+    getPayload = Authentication.getPayload;
 
     static getPayload = (token: string): PayloadType => {
         const splitedToken = token.split('.');
