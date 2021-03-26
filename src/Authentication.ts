@@ -8,6 +8,15 @@ export type PayloadType = {
     exp: string;
 }
 
+export type User = {
+    _id: string;
+    mail: string;
+    firstname: string;
+    lastname: string;
+    applicationId: string;
+
+}
+
 const hostname = 'https://sso.quiches.ovh';
 
 class Authentication {
@@ -45,7 +54,7 @@ class Authentication {
         }
     }
 
-     getUsers = async (search: string|null = null): Promise<void> => {
+     getUsers = async (search: string|null = null): Promise<User[]> => {
          const config = {
              headers: {
                  'Content-Type': 'application/json',
@@ -59,9 +68,10 @@ class Authentication {
              // @ts-ignore
              const result = await axios(config);
 
-             if (result.status !== 203) {
+             if (result.status !== 200) {
                  throw new Error();
              }
+             return result.data;
          } catch (e) {
              throw new Error();
          }
