@@ -45,6 +45,28 @@ class Authentication {
         }
     }
 
+     getUsers = async (search: string|null = null): Promise<void> => {
+         const config = {
+             headers: {
+                 'Content-Type': 'application/json',
+             },
+             method: 'GET',
+             url: !search
+                 ? this.injectPrivateKey('/application-users/private-key/')
+                 : `${hostname}/application-users/private-key/?search=${search}&privateKey=${this.privateKey}`,
+         };
+         try {
+             // @ts-ignore
+             const result = await axios(config);
+
+             if (result.status !== 203) {
+                 throw new Error();
+             }
+         } catch (e) {
+             throw new Error();
+         }
+     }
+
     getPayload = Authentication.getPayload;
 
     static getPayload = (token: string): PayloadType => {
