@@ -1,9 +1,8 @@
 {
   "name": "@quiches/back",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "main": "build/index.js",
   "license": "MIT",
-  "type": "module",
   "dependencies": {
     "atob": "^2.1.2",
     "axios": "^0.21.0",
