@@ -32,18 +32,15 @@ class Notification {
             url: this.injectPrivateKey('/notification'),
         };
 
-        // eslint-disable-next-line no-useless-catch
         try {
             // @ts-ignore
             const result = await axios(config);
 
             if (result.status !== 201) {
-                // eslint-disable-next-line no-console
-                console.log(result);
                 throw new Error();
             }
         } catch (e) {
-            throw e;
+            throw new Error();
         }
     }
 }
